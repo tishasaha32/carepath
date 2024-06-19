@@ -1,0 +1,37 @@
+.signInWithGoogleContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+.orContainer {
+    width: 10rem; 
+    text-align: center; 
+    border-bottom: 1px solid #a7a7a7;
+    color: #a7a7a7; 
+    line-height: 0.1em;
+} 
+.orSpan{ 
+    background:#fff; 
+    padding:0 10px; 
+}
+.googleButton{
+    padding: 13px;
+    width: 75vw;
+    border-radius: 2rem;
+    font-weight: bolder;
+    font-size: 1rem;
+    outline: none;
+    letter-spacing: 2px;
+}
+.signUpContainer{
+    font-size: 13px;
+    font-weight: bolder;
+}
+.signUp{
+    background: linear-gradient(to right, #9225E9, #F17B00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
