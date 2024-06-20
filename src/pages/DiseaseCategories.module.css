@@ -1,0 +1,35 @@
+.diseaseCategoriesContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 95vh;
+}
+.diseaseCategoriesHeading{
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    font-weight: bolder;
+}
+.categoriesContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.categoryImg{
+    width: 40vw;
+    height: 17vh;
+}
+.getStartedButton{
+    background: linear-gradient(to right, #9225E9, #F17B00);
+    color: #fff;
+    border: none;
+    padding: 14px;
+    width: 75vw;
+    border-radius: 2rem;
+    font-weight: bolder;
+    font-size: 1rem;
+    outline: none;
+    margin-top: 2rem;
+    letter-spacing: 2px;
+}
