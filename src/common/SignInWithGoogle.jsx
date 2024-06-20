@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./SignInWithGoogle.module.css";
+import { Link } from "react-router-dom";
 
 function SignInWithGoogle() {
   return (
@@ -9,7 +10,11 @@ function SignInWithGoogle() {
       </p>
       <button className={styles.googleButton}>Login with Google</button>
       <p className={styles.signUpContainer}>
-        Don't have an account? <span className={styles.signUp}> Sign Up </span>
+        Don't have an account?{" "}
+        <Link to="/register" className={styles.signUp}>
+          {" "}
+          Sign Up{" "}
+        </Link>
       </p>
     </div>
   );
