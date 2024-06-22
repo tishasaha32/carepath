@@ -16,9 +16,22 @@
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }
-.categoryImg{
-    width: 40vw;
-    height: 17vh;
+.categoryContainer{
+    position: relative;
+}
+.selectedCategoryImg{
+    width: 42vw;
+    height: 18vh;
+}
+.notSelected{
+    display: none;
+}
+.selected{
+    position: absolute;
+    top: 1.2rem;
+    right: 1px;
+    font-size: 1.7rem;
+    color: #4bae4f;
 }
 .getStartedButton{
     background: linear-gradient(to right, #9225E9, #F17B00);
