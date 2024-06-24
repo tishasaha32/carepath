@@ -8,6 +8,7 @@ import Home from "./pages/Home.jsx";
 import Recipe from "./pages/Recipe.jsx";
 import Exercise from "./pages/Exercise.jsx";
 import Consultancy from "./pages/Consultancy.jsx";
+import CategoryWiseRecipes from "./pages/CategoryWiseRecipes.jsx";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/recipes" element={<Recipe />} />
         <Route path="/exercise" element={<Exercise />} />
         <Route path="/consultancy" element={<Consultancy />} />
+        <Route path="/categories/:id" element={<CategoryWiseRecipes />} />
       </Routes>
     </div>
   );
