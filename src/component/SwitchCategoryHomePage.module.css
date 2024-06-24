@@ -1,0 +1,17 @@
+.switchCategoryContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+.selectOption{
+    width: 90vw;
+    border-radius: 5px;
+    background-color: #D6CAE1;
+    border: none;
+    padding: 14px;
+    font-weight: bolder;
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 10px;
+}

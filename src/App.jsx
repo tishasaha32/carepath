@@ -4,6 +4,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import DiseaseCategories from "./pages/DiseaseCategories.jsx";
 import SelectedDisease from "./pages/SelectedDisease.jsx";
+import Home from "./pages/Home.jsx";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/diseaseCategories" element={<DiseaseCategories />} />
         <Route path="/selectedDisease" element={<SelectedDisease />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </div>
   );
