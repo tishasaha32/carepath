@@ -1,0 +1,22 @@
+.bottomNavbarIconsContainer{
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 8vh;
+    z-index: 10;
+    border-top: 1px solid black;
+}
+
+.homeIconContainer, .recipesIconContainer, .exerciseIconContainer, .consultancyIconContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 20vw;
+}
+.homeIcon, .recipesIcon, .exerciseIcon, .consultancyIcon{
+    font-size: 1.5rem;
+}
