@@ -1,5 +1,8 @@
 import { initializeApp } from "firebase/app";
+import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore";
 
+// Your Firebase configuration object
 const firebaseConfig = {
   apiKey: "AIzaSyBszz-NF0r_PkE4NJsFVYgt-6XLwdRs8Es",
   authDomain: "carepath-medhack.firebaseapp.com",
@@ -11,3 +14,10 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// Initialize Firestore and Storage
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+export { db, storage };
+export default app;
