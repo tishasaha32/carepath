@@ -1,48 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import HeaderWithBackAndProfile from "../common/HeaderWithBackAndProfile";
 import styles from "./CategoryWiseRecipes.module.css";
-import { getDocs, collection } from "firebase/firestore";
-import { db } from "../firebase/config";
 import { Link } from "react-router-dom";
+import useGetCategoryWiseRecipes from "../hooks/useGetCategoryWiseRecipes";
 
 function CategoryWiseRecipes() {
-  const [allRecipes, setAllRecipes] = useState([]);
-  const [recipes, setRecipes] = useState([]);
-
   const pathname = window.location.pathname;
   const mealTime = pathname.split("/")[2];
-  //get recipes collection from firestore
-  useEffect(() => {
-    const getRecipes = async () => {
-      const recipesCollection = collection(db, "recipes");
-      const recipesSnapshot = await getDocs(recipesCollection);
-      const recipesList = recipesSnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setAllRecipes(recipesList);
-      const filteredRecipes = recipesList.filter((recipe) => {
-        return recipe.mealCategory === "veg" && recipe.mealTime === mealTime;
-      });
-      setRecipes(filteredRecipes);
-    };
-    getRecipes();
-  }, []);
 
-  const handleMealCategory = (category) => {
-    const filteredRecipes = allRecipes.filter((recipe) => {
-      return recipe.mealCategory === category && recipe.mealTime === mealTime;
+  const { recipes, handleMealCategory, mealCategory } =
+    useGetCategoryWiseRecipes({
+      pathname,
+      mealTime,
     });
-    setRecipes(filteredRecipes);
-  };
-
   return (
     <div>
       <HeaderWithBackAndProfile />
       <div className={styles.mealCategoriesContainer}>
-        <p onClick={() => handleMealCategory("veg")}>Vegetarian</p>
-        <p onClick={() => handleMealCategory("vegan")}>Vegan</p>
-        <p onClick={() => handleMealCategory("nonveg")}>Non-Vegetarian</p>
+        <p
+          onClick={() => handleMealCategory("veg")}
+          className={mealCategory === "veg" ? styles.activeCategory : ""}
+        >
+          Vegetarian
+        </p>
+        <p
+          onClick={() => handleMealCategory("vegan")}
+          className={mealCategory === "vegan" ? styles.activeCategory : ""}
+        >
+          Vegan
+        </p>
+        <p
+          onClick={() => handleMealCategory("nonveg")}
+          className={mealCategory === "nonveg" ? styles.activeCategory : ""}
+        >
+          Non-Vegetarian
+        </p>
       </div>
 
       <div className={styles.recipesContainer}>
