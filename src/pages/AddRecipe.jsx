@@ -15,7 +15,6 @@ function AddRecipe() {
   const [mealTime, setMealTime] = useState("");
   const [mealCategory, setMealCategory] = useState("");
   const fileInputRef = useRef(null);
-  const quillRef = useRef(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -104,6 +103,9 @@ function AddRecipe() {
         onChange={(e) => setDiseaseCategory(e.target.value)}
         required
       >
+        <option value="" disabled>
+          Select Disease Category
+        </option>
         <option value="PCOD-PCOS">PCOD-PCOS</option>
         <option value="THYROID">THYROID</option>
         <option value="OBESITY">OBESITY</option>
@@ -123,6 +125,9 @@ function AddRecipe() {
         onChange={(e) => setMealTime(e.target.value)}
         required
       >
+        <option value="" disabled>
+          Select Meal Time
+        </option>
         <option value="Breakfast">Breakfast</option>
         <option value="Lunch">Lunch</option>
         <option value="Dinner">Dinner</option>
@@ -139,13 +144,15 @@ function AddRecipe() {
         onChange={(e) => setMealCategory(e.target.value)}
         required
       >
+        <option value="" disabled>
+          Select Meal Category
+        </option>
         <option value="veg">Veg</option>
         <option value="vegan">Vegan</option>
         <option value="nonveg">Non Veg</option>
       </select>
       <ReactQuill
         theme="snow"
-        ref={quillRef}
         placeholder="Enter ingredients"
         value={ingredients}
         onChange={(value) => setIngredients(value)}

@@ -10,6 +10,7 @@ import Exercise from "./pages/Exercise.jsx";
 import Consultancy from "./pages/Consultancy.jsx";
 import CategoryWiseRecipes from "./pages/CategoryWiseRecipes.jsx";
 import AddRecipe from "./pages/AddRecipe.jsx";
+import FullRecipeBody from "./pages/FullRecipeBody.jsx";
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/consultancy" element={<Consultancy />} />
         <Route path="/categories/:id" element={<CategoryWiseRecipes />} />
         <Route path="/addRecipe" element={<AddRecipe />} />
+        <Route path="/recipe/:id" element={<FullRecipeBody />} />
       </Routes>
     </div>
   );

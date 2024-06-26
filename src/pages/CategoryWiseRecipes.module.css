@@ -1,0 +1,43 @@
+.mealCategoriesContainer{
+    display: flex;;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem;
+    font-weight: bolder;
+}
+.recipesContainer{
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1rem;
+    gap: 8px;
+}
+.recipeContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+.recipeImage{
+    width: 45vw;
+    height: 20vh;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 7px;
+    width: 45vw;
+    height: 20vh;
+    border-radius: 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+}
+.recipeName{
+    position: absolute;
+    bottom: 1vh;
+    color: white;
+    font-weight: bolder;
+    text-align: center;
+    width: 40vw;
+}
