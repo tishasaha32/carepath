@@ -10,7 +10,7 @@ function HeaderWithBackAndProfile() {
       <Link to="/recipes" style={{ textDecoration: "none", color: "inherit" }}>
         <div className={styles.backButton}>
           <IoIosArrowRoundBack className={styles.backIcon} />
-          <p className={styles.recipesText}>Recipes</p>
+          <p className={styles.recipesText}>Back</p>
         </div>
       </Link>
       <div className={styles.profile}>
