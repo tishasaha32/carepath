@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Register.module.css";
 import { Link } from "react-router-dom";
 import { LuUserCheck2 } from "react-icons/lu";
 import { MdLockOpen } from "react-icons/md";
 import { IoMailOpenOutline } from "react-icons/io5";
 import { IoIosPhonePortrait } from "react-icons/io";
+import useHandleRegister from "../hooks/useHandleRegister";
 
 function Register() {
+  const handleRegister = useHandleRegister({});
+
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleRegister(email, password, fullName, phoneNumber);
+  };
   return (
-    <form className={styles.registerContainer}>
+    <form className={styles.registerContainer} onSubmit={handleSubmit}>
       <img
         src="https://firebasestorage.googleapis.com/v0/b/carepath-medhack.appspot.com/o/logo%2FLogo.png?alt=media&token=d55d4366-a4f2-4d7d-891f-62061ac50e72"
         alt="logo"
@@ -21,6 +33,8 @@ function Register() {
           placeholder="Enter your Full Name"
           className={styles.input}
           required
+          value={fullName}
+          onChange={(event) => setFullName(event.target.value)}
         />
       </div>
 
@@ -31,6 +45,8 @@ function Register() {
           placeholder="Enter your Email"
           className={styles.input}
           required
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
         />
       </div>
 
@@ -41,6 +57,8 @@ function Register() {
           placeholder="Enter your Phone Number"
           className={styles.input}
           required
+          value={phoneNumber}
+          onChange={(event) => setPhoneNumber(event.target.value)}
         />
       </div>
 
@@ -51,6 +69,8 @@ function Register() {
           placeholder="Enter your Password"
           className={styles.input}
           required
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
         />
       </div>
 

@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Login.module.css";
 import ForgotPassword from "../common/ForgotPassword";
 import SignInWithGoogle from "../common/SignInWithGoogle";
 import { LuUserCheck2 } from "react-icons/lu";
 import { MdLockOpen } from "react-icons/md";
+import useHandleLogin from "../hooks/usehandleLogin";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLogin = useHandleLogin();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    handleLogin(email, password);
+  };
+
   return (
-    <form className={styles.loginContainer}>
+    <form className={styles.loginContainer} onSubmit={handleSubmit}>
       <img
         src="https://firebasestorage.googleapis.com/v0/b/carepath-medhack.appspot.com/o/logo%2FLogo.png?alt=media&token=d55d4366-a4f2-4d7d-891f-62061ac50e72"
         alt="logo"
@@ -20,6 +30,8 @@ function Login() {
           placeholder="Enter your Email"
           className={styles.input}
           required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
       </div>
 
@@ -30,6 +42,8 @@ function Login() {
           placeholder="Enter your Password"
           className={styles.input}
           required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
