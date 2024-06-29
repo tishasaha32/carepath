@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./DiseaseCategories.module.css";
 import { IoIosCheckmarkCircle } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 function DiseaseCategories() {
   const diseaseCategoriesArray = [
@@ -45,6 +46,7 @@ function DiseaseCategories() {
   const [diseaseCategories, setDiseaseCategories] = useState(
     diseaseCategoriesArray
   );
+  const [selectedDisease, setSelectedDisease] = useState([]);
 
   const toggleCategorySelection = (id) => {
     setDiseaseCategories((prevCategories) =>
@@ -54,6 +56,11 @@ function DiseaseCategories() {
           : category
       )
     );
+    const selectedCategories = diseaseCategories
+      .filter((category) => category.selected)
+      .map((category) => category.name);
+
+    setSelectedDisease(selectedCategories);
   };
 
   return (
@@ -85,7 +92,9 @@ function DiseaseCategories() {
           ))}
         </div>
       </div>
-      <button className={styles.getStartedButton}>Get Started</button>
+      <Link to="/">
+        <button className={styles.getStartedButton}>Get Started</button>
+      </Link>
     </div>
   );
 }

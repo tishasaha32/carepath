@@ -1,41 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./BottomNavbar.module.css";
 import { AiOutlineHome } from "react-icons/ai";
 import { GiCampCookingPot } from "react-icons/gi";
 import { TbTreadmill } from "react-icons/tb";
 import { FaUserDoctor } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function BottomNavbar() {
+  const [selectedTab, setSelectedTab] = useState("home");
+
+  const handleTabClick = (tab) => {
+    setSelectedTab(tab);
+  };
+
   return (
     <div className={styles.bottomNavbarIconsContainer}>
-      <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
-        <div className={styles.homeIconContainer}>
-          <AiOutlineHome className={styles.homeIcon} />
-          <p>Home</p>
-        </div>
-      </Link>
-      <Link to="/recipes" style={{ textDecoration: "none", color: "inherit" }}>
-        <div className={styles.recipesIconContainer}>
-          <GiCampCookingPot className={styles.recipesIcon} />
-          <p>Recipes</p>
-        </div>
-      </Link>
-      <Link to="/exercise" style={{ textDecoration: "none", color: "inherit" }}>
-        <div className={styles.exerciseIconContainer}>
-          <TbTreadmill className={styles.exerciseIcon} />
-          <p>Exercise</p>
-        </div>
-      </Link>
-      <Link
-        to="/consultancy"
-        style={{ textDecoration: "none", color: "inherit" }}
+      <NavLink
+        to="/"
+        style={{ textDecoration: "none" }}
+        className={({ isActive }) =>
+          isActive ? styles.activeIconContainer : styles.homeIconContainer
+        }
+        onClick={() => handleTabClick("home")}
       >
-        <div className={styles.consultancyIconContainer}>
-          <FaUserDoctor className={styles.consultancyIcon} />
-          <p>Consult</p>
-        </div>
-      </Link>
+        <AiOutlineHome className={styles.homeIcon} />
+        <p>Home</p>
+      </NavLink>
+      <NavLink
+        to="/recipes"
+        style={{ textDecoration: "none" }}
+        className={({ isActive }) =>
+          isActive ? styles.activeIconContainer : styles.recipesIconContainer
+        }
+        onClick={() => handleTabClick("recipes")}
+      >
+        <GiCampCookingPot className={styles.recipesIcon} />
+        <p>Recipes</p>
+      </NavLink>
+      <NavLink
+        to="/exercise"
+        style={{ textDecoration: "none" }}
+        className={({ isActive }) =>
+          isActive ? styles.activeIconContainer : styles.exerciseIconContainer
+        }
+        onClick={() => handleTabClick("exercise")}
+      >
+        <TbTreadmill className={styles.exerciseIcon} />
+        <p>Exercise</p>
+      </NavLink>
+      <NavLink
+        to="/consultancy"
+        style={{ textDecoration: "none" }}
+        className={({ isActive }) =>
+          isActive
+            ? styles.activeIconContainer
+            : styles.consultancyIconContainer
+        }
+        onClick={() => handleTabClick("consultancy")}
+      >
+        <FaUserDoctor className={styles.consultancyIcon} />
+        <p>Consult</p>
+      </NavLink>
     </div>
   );
 }

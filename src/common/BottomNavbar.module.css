@@ -10,12 +10,18 @@
     border-top: 1px solid black;
 }
 
-.homeIconContainer, .recipesIconContainer, .exerciseIconContainer, .consultancyIconContainer{
+.homeIconContainer, .recipesIconContainer, .exerciseIconContainer, .consultancyIconContainer, .activeIconContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 20vw;
+    color: black;
+}
+.activeIconContainer{
+    color: #9225E9;
+    /* color: red; */
+    font-weight: bolder;
 }
 .homeIcon, .recipesIcon, .exerciseIcon, .consultancyIcon{
     font-size: 1.5rem;
