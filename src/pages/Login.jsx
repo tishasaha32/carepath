@@ -5,15 +5,19 @@ import SignInWithGoogle from "../common/SignInWithGoogle";
 import { LuUserCheck2 } from "react-icons/lu";
 import { MdLockOpen } from "react-icons/md";
 import useHandleLogin from "../hooks/usehandleLogin";
+import { emailSignin } from "../redux/reducer/authSlice";
+import { useDispatch } from "react-redux";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = useHandleLogin();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    handleLogin(email, password);
+    // handleLogin(email, password);
+    dispatch(emailSignin({ email, password }));
   };
 
   return (

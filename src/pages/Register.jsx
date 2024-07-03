@@ -6,9 +6,12 @@ import { MdLockOpen } from "react-icons/md";
 import { IoMailOpenOutline } from "react-icons/io5";
 import { IoIosPhonePortrait } from "react-icons/io";
 import useHandleRegister from "../hooks/useHandleRegister";
+import { useSelector, useDispatch } from "react-redux";
+import { emailSignup } from "../redux/reducer/authSlice";
 
 function Register() {
-  const handleRegister = useHandleRegister({});
+  // const handleRegister = useHandleRegister({});
+  const dispatch = useDispatch();
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
@@ -17,7 +20,8 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    handleRegister(email, password, fullName, phoneNumber);
+    console.log(email, password, fullName, phoneNumber);
+    dispatch(emailSignup({ email, password, fullName, phoneNumber }));
   };
   return (
     <form className={styles.registerContainer} onSubmit={handleSubmit}>
