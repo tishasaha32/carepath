@@ -3,16 +3,31 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { setDoc, doc } from "firebase/firestore";
+import {
+  setDoc,
+  doc,
+  query,
+  collection,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { auth, db } from "../../firebase/config.js";
 import useCheckEmailExists from "../../hooks/useCheckEmailExists.jsx";
 import useCheckPassword from "../../hooks/useCheckPassword.jsx";
+import { useNavigate } from "react-router-dom";
+import checkEmailExists from "../../helper/checkEmailExists.js";
 
 // Create the emailSignup async thunk
 export const emailSignup = createAsyncThunk(
   "auth/emailSignup",
   async ({ email, password, fullName, phoneNumber }, thunkAPI) => {
     try {
+      const isPresent = await checkEmailExists(email);
+
+      if (isPresent) {
+        return thunkAPI.rejectWithValue("Email already exists");
+      }
+
       const res = await createUserWithEmailAndPassword(auth, email, password);
       if (res?.user) {
         await setDoc(doc(db, "users", res?.user.uid), {
@@ -23,9 +38,7 @@ export const emailSignup = createAsyncThunk(
           disease: [],
         });
         console.log("User created successfully");
-        setTimeout(() => {
-          window.location.href = "/login";
-        }, 2000);
+
         return res.user;
       }
     } catch (error) {
@@ -41,9 +54,6 @@ export const emailSignin = createAsyncThunk(
     try {
       const res = await signInWithEmailAndPassword(auth, email, password);
       if (res?.user) {
-        setTimeout(() => {
-          window.location.href = "/diseaseCategories";
-        }, 2000);
         console.log("User logged in successfully", res.user.email);
         return res.user.email;
       }

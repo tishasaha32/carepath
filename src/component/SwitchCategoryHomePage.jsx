@@ -3,10 +3,8 @@ import styles from "./SwitchCategoryHomePage.module.css";
 import { useSelector } from "react-redux";
 
 function SwitchCategoryHomePage() {
-  const user = useSelector((state) => state.auth.user);
   return (
     <div className={styles.switchCategoryContainer}>
-      <h3 className={styles.switchCategoryHeading}></h3>
       <select
         name="category"
         id="category"

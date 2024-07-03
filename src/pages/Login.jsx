@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Login.module.css";
 import ForgotPassword from "../common/ForgotPassword";
 import SignInWithGoogle from "../common/SignInWithGoogle";
@@ -6,19 +6,28 @@ import { LuUserCheck2 } from "react-icons/lu";
 import { MdLockOpen } from "react-icons/md";
 import useHandleLogin from "../hooks/usehandleLogin";
 import { emailSignin } from "../redux/reducer/authSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleLogin = useHandleLogin();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const user = useSelector((state) => state.auth.user);
+  const loading = useSelector((state) => state.auth.loading);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // handleLogin(email, password);
     dispatch(emailSignin({ email, password }));
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
 
   return (
     <form className={styles.loginContainer} onSubmit={handleSubmit}>
@@ -52,7 +61,9 @@ function Login() {
       </div>
 
       <ForgotPassword />
-      <button className={styles.loginButton}>Login</button>
+      <button className={styles.loginButton}>
+        {loading ? "Loading..." : "Login"}
+      </button>
       <SignInWithGoogle />
     </form>
   );

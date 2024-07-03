@@ -11,6 +11,7 @@ import Consultancy from "./pages/Consultancy.jsx";
 import CategoryWiseRecipes from "./pages/CategoryWiseRecipes.jsx";
 import AddRecipe from "./pages/AddRecipe.jsx";
 import FullRecipeBody from "./pages/FullRecipeBody.jsx";
+import Onboarding from "./pages/Onboarding.jsx";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/onboarding" element={<Onboarding />} />
         <Route path="/diseaseCategories" element={<DiseaseCategories />} />
         <Route path="/selectedDisease" element={<SelectedDisease />} />
         <Route path="/" element={<Home />} />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Register.module.css";
 import { Link } from "react-router-dom";
 import { LuUserCheck2 } from "react-icons/lu";
@@ -18,11 +18,21 @@ function Register() {
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(email, password, fullName, phoneNumber);
+  const user = useSelector((state) => state.auth.user);
+  const loading = useSelector((state) => state.auth.loading);
+  const error = useSelector((state) => state.auth.error);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
     dispatch(emailSignup({ email, password, fullName, phoneNumber }));
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate("/login");
+    }
+  }, [user]);
+
   return (
     <form className={styles.registerContainer} onSubmit={handleSubmit}>
       <img
@@ -78,7 +88,10 @@ function Register() {
         />
       </div>
 
-      <button className={styles.registerButton}>Register</button>
+      {error && <p className={styles.error}>{error}</p>}
+      <button className={styles.registerButton}>
+        {loading ? "Loading..." : "Register"}
+      </button>
       <p className={styles.loginContainer}>
         Already have an account?{" "}
         <Link to="/login" className={styles.login}>
