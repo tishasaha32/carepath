@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Register.module.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { LuUserCheck2 } from "react-icons/lu";
 import { MdLockOpen } from "react-icons/md";
 import { IoMailOpenOutline } from "react-icons/io5";
 import { IoIosPhonePortrait } from "react-icons/io";
-import useHandleRegister from "../hooks/useHandleRegister";
 import { useSelector, useDispatch } from "react-redux";
 import { emailSignup } from "../redux/reducer/authSlice";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
-  // const handleRegister = useHandleRegister({});
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [fullName, setFullName] = useState("");
@@ -29,7 +29,7 @@ function Register() {
 
   useEffect(() => {
     if (user) {
-      navigate("/login");
+      navigate("/onboarding");
     }
   }, [user]);
 

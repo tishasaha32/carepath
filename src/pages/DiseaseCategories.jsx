@@ -63,6 +63,10 @@ function DiseaseCategories() {
     setSelectedDisease(selectedCategories);
   };
 
+  const handleDiseaseUpdate = () => {
+    console.log(selectedDisease);
+  };
+
   return (
     <div className={styles.diseaseCategoriesContainer}>
       <img
@@ -92,9 +96,9 @@ function DiseaseCategories() {
           ))}
         </div>
       </div>
-      <Link to="/">
-        <button className={styles.getStartedButton}>Get Started</button>
-      </Link>
+      {/* <Link to="/"> */}
+      <button className={styles.getStartedButton}>Get Started</button>
+      {/* </Link> */}
     </div>
   );
 }

@@ -10,7 +10,6 @@ function Home() {
     <div>
       <HomePageHeader />
       <SwitchCategoryHomePage />
-      <h3>{user}</h3>
       <BottomNavbar />
     </div>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import { IoManOutline } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
 import styles from "./HomePageHeader.module.css";
+import { Link } from "react-router-dom";
 
 function HomePageHeader() {
   return (
@@ -15,7 +16,9 @@ function HomePageHeader() {
           <IoManOutline className={styles.resourceIcon} />
           <p className={styles.resourcesText}>Resources</p>
         </div>
-        <FaRegUserCircle className={styles.userIcon} />
+        <Link to="/profile" className={styles.userContainer}>
+          <FaRegUserCircle className={styles.userIcon} />
+        </Link>
       </div>
     </div>
   );

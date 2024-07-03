@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import OnboardingStep1 from "../component/OnboardingStep1";
 import OnboardingStep2 from "../component/OnboardingStep2";
 import OnboardingStep3 from "../component/OnboardingStep3";
+import { useNavigate } from "react-router-dom";
 
 const Onboarding = () => {
   const [step, setStep] = useState(1);
 
+  const navigate = useNavigate();
+
   const nextStep = () => setStep(step + 1);
   const finishOnboarding = () => {
-    window.location.href = "/diseaseCategories";
+    navigate("/diseaseCategories");
     console.log("Onboarding complete!");
   };
   const skipOnboarding = () => {
-    window.location.href = "/diseaseCategories";
+    navigate("/diseaseCategories");
   };
 
   return (
