@@ -3,17 +3,20 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
+  updateProfile,
 } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from "../../firebase/config.js";
 import { GoogleAuthProvider } from "firebase/auth";
-// import { displayName } from "react-quill";
 
 export const emailSignup = createAsyncThunk(
   "auth/emailSignup",
   async ({ email, password, fullName, phoneNumber }, thunkAPI) => {
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(res.user, {
+        displayName: fullName,
+      });
       console.log("res :", res, "res?.user :", res?.user);
       if (res?.user) {
         await setDoc(doc(db, "users", res?.user.uid), {
@@ -26,7 +29,14 @@ export const emailSignup = createAsyncThunk(
         });
         console.log("User created successfully");
         console.log("res.user :", res.user);
-        return res.user.email;
+        return {
+          email: res.user.email,
+          id: res.user.uid,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+          phoneNumber: res.user.phoneNumber,
+          disease: [],
+        };
       }
     } catch (error) {
       console.error("Error during registration:", error);
@@ -57,7 +67,14 @@ export const emailSignin = createAsyncThunk(
           id: res.user.uid,
         });
         console.log("User logged in successfully", res.user.email);
-        return res.user.email;
+        return {
+          email: res.user.email,
+          id: res.user.uid,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+          phoneNumber: res.user.phoneNumber,
+          disease: [],
+        };
       }
     } catch (error) {
       console.error("Error during login:", error);
@@ -84,8 +101,15 @@ export const googleSignin = createAsyncThunk(
           disease: [],
           id: res.user.uid,
         });
-        console.log("User logged in successfully", res.user.email);
-        return res.user.email;
+        console.log("User logged in successfully", res.user);
+        return {
+          email: res.user.email,
+          id: res.user.uid,
+          displayName: res.user.displayName,
+          photoURL: res.user.photoURL,
+          phoneNumber: res.user.phoneNumber,
+          disease: [],
+        };
       }
     } catch (error) {
       console.error("Error during login:", error);

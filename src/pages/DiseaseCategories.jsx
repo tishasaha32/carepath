@@ -56,16 +56,15 @@ function DiseaseCategories() {
           : category
       )
     );
-    const selectedCategories = diseaseCategories
-      .filter((category) => category.selected)
-      .map((category) => category.name);
+  };
 
+  useEffect(() => {
+    const selectedCategories = diseaseCategories.filter(
+      (category) => category.selected
+    );
+    console.log(selectedCategories);
     setSelectedDisease(selectedCategories);
-  };
-
-  const handleDiseaseUpdate = () => {
-    console.log(selectedDisease);
-  };
+  }, [diseaseCategories]);
 
   return (
     <div className={styles.diseaseCategoriesContainer}>
@@ -96,9 +95,9 @@ function DiseaseCategories() {
           ))}
         </div>
       </div>
-      {/* <Link to="/"> */}
-      <button className={styles.getStartedButton}>Get Started</button>
-      {/* </Link> */}
+      <Link to="/">
+        <button className={styles.getStartedButton}>Get Started</button>
+      </Link>
     </div>
   );
 }

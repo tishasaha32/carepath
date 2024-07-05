@@ -6,6 +6,7 @@ import { Navigate } from "react-router-dom";
 
 function Profile() {
   const user = useSelector((state) => state.auth.user);
+  console.log(user);
   const dispatch = useDispatch();
   const handleLogout = () => {
     auth.signOut();

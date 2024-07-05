@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import DiseaseCategories from "./pages/DiseaseCategories.jsx";
@@ -12,20 +12,17 @@ import CategoryWiseRecipes from "./pages/CategoryWiseRecipes.jsx";
 import AddRecipe from "./pages/AddRecipe.jsx";
 import FullRecipeBody from "./pages/FullRecipeBody.jsx";
 import Onboarding from "./pages/Onboarding.jsx";
+import Profile from "./pages/Profile.jsx";
 import { useDispatch } from "react-redux";
-import {
-  clearUser,
-  setError,
-  setLoading,
-  setUser,
-} from "./redux/reducer/authSlice.js";
+import { clearUser, setUser, setLoading } from "./redux/reducer/authSlice.js";
 import { auth } from "./firebase/config.js";
 import { onAuthStateChanged } from "firebase/auth";
 import ProtectedRoute from "./component/ProtectedRoute.jsx";
-import Profile from "./pages/Profile.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
+  const [isOnboarded, setIsOnboarded] = useState(false);
+  const [authChecked, setAuthChecked] = useState(false);
 
   useEffect(() => {
     dispatch(setLoading(true));
@@ -39,13 +36,25 @@ const App = () => {
             photoURL: user.photoURL,
           })
         );
+        const onboarded = localStorage.getItem(`isOnboarded_${user.uid}`);
+        setIsOnboarded(Boolean(onboarded));
       } else {
         dispatch(clearUser());
       }
+      setAuthChecked(true);
     });
 
     return () => unsubscribe();
   }, [dispatch]);
+
+  const handleOnboardingComplete = (uid) => {
+    localStorage.setItem(`isOnboarded_${uid}`, "true");
+    setIsOnboarded(true);
+  };
+
+  if (!authChecked) {
+    return <div>Loading...</div>; // Or any loading indicator
+  }
 
   return (
     <div>
@@ -56,7 +65,11 @@ const App = () => {
           path="/onboarding"
           element={
             <ProtectedRoute>
-              <Onboarding />
+              <Onboarding
+                onComplete={() =>
+                  handleOnboardingComplete(auth.currentUser.uid)
+                }
+              />
             </ProtectedRoute>
           }
         />
@@ -64,7 +77,11 @@ const App = () => {
           path="/diseaseCategories"
           element={
             <ProtectedRoute>
-              <DiseaseCategories />
+              {isOnboarded ? (
+                <DiseaseCategories />
+              ) : (
+                <Navigate to="/onboarding" />
+              )}
             </ProtectedRoute>
           }
         />
@@ -80,7 +97,7 @@ const App = () => {
           path="/"
           element={
             <ProtectedRoute>
-              <Home />
+              {isOnboarded ? <Home /> : <Navigate to="/onboarding" />}
             </ProtectedRoute>
           }
         />
