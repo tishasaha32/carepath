@@ -77,6 +77,9 @@ export const emailSignin = createAsyncThunk(
         };
       }
     } catch (error) {
+      // if (error.code === "auth/invalid-credential") {
+      //   return thunkAPI.rejectWithValue("User not found");
+      // }
       console.error("Error during login:", error);
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -127,7 +130,6 @@ export const authSlice = createSlice({
   },
   reducers: {
     setUser: (state, action) => {
-      console.log("action.payload :", action.payload);
       state.user = action.payload;
       state.loading = false;
     },
