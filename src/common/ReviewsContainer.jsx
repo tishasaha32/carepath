@@ -15,9 +15,10 @@ function ReviewsContainer({ docId }) {
     docId,
     reviewText,
   });
+  console.log(reviews);
   return (
     <div className={styles.reviewsContainer}>
-      {reviews ? (
+      {reviews.length !== 0 ? (
         reviews.map((review) => (
           <div key={review.id} className={styles.reviewContainer}>
             {review.userPhotoURL ? (

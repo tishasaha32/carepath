@@ -6,7 +6,7 @@ import { LuUserCheck2 } from "react-icons/lu";
 import { MdLockOpen } from "react-icons/md";
 import { emailSignin } from "../redux/reducer/authSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -29,8 +29,8 @@ function Login() {
   }, [user]);
 
   return (
-    <>
-      <form className={styles.loginContainer} onSubmit={handleSubmit}>
+    <div className={styles.loginContainer}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <img
           src="https://firebasestorage.googleapis.com/v0/b/carepath-medhack.appspot.com/o/logo%2FLogo.png?alt=media&token=d55d4366-a4f2-4d7d-891f-62061ac50e72"
           alt="logo"
@@ -59,14 +59,13 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-
         <ForgotPassword />
         <button className={styles.loginButton}>
           {loading ? "Loading..." : "Login"}
         </button>
-        <SignInWithGoogle />
       </form>
-    </>
+      <SignInWithGoogle />
+    </div>
   );
 }
 

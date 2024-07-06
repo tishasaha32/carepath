@@ -16,7 +16,6 @@ function useGetReviews({ docId, reviewText }) {
       const requiredReviews = reviewsList.filter(
         (review) => review.recipeId === docId
       );
-      console.log(requiredReviews);
       setReviews(requiredReviews);
     };
 

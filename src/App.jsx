@@ -5,6 +5,7 @@ import Register from "./pages/Register.jsx";
 import DiseaseCategories from "./pages/DiseaseCategories.jsx";
 import SelectedDisease from "./pages/SelectedDisease.jsx";
 import Home from "./pages/Home.jsx";
+import ResetPassword from "./pages/ResetPassword.jsx";
 import Recipe from "./pages/Recipe.jsx";
 import Exercise from "./pages/Exercise.jsx";
 import Consultancy from "./pages/Consultancy.jsx";
@@ -61,6 +62,7 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/resetPassword" element={<ResetPassword />} />
         <Route
           path="/onboarding"
           element={

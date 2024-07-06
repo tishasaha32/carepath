@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./ForgotPassword.module.css";
+import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   return (
@@ -8,7 +9,9 @@ const ForgotPassword = () => {
         <input type="checkbox" />
         <label className={styles.rememberMe}>Remember me</label>
       </div>
-      <p className={styles.forgotPassword}>Forgot Password?</p>
+      <Link to="/resetPassword" className={styles.forgotPassword}>
+        <p>Forgot Password?</p>
+      </Link>
     </div>
   );
 };
