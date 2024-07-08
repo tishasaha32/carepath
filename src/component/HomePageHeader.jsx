@@ -3,8 +3,10 @@ import { IoManOutline } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
 import styles from "./HomePageHeader.module.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function HomePageHeader() {
+  const { user } = useSelector((state) => state.auth);
   return (
     <div className={styles.homePage}>
       <img
@@ -14,10 +16,14 @@ function HomePageHeader() {
       <div className={styles.resoucesAndUserContainer}>
         <div className={styles.resourcesContainer}>
           <IoManOutline className={styles.resourceIcon} />
-          <p className={styles.resourcesText}>Resources</p>
+          <p className={styles.resourcesText}>Find Clinic</p>
         </div>
         <Link to="/profile" className={styles.userContainer}>
-          <FaRegUserCircle className={styles.userIcon} />
+          {user.photoURL ? (
+            <img src={user.photoURL} className={styles.userImage} />
+          ) : (
+            <FaRegUserCircle className={styles.userIcon} />
+          )}
         </Link>
       </div>
     </div>

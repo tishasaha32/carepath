@@ -3,8 +3,11 @@ import styles from "./HeaderWithBackAndProfile.module.css";
 import { IoIosArrowRoundBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 function HeaderWithBackAndProfile() {
+  const { user } = useSelector((state) => state.auth);
+  console.log(user);
   return (
     <div className={styles.headerWithBackAndProfileContainer}>
       <Link to="/recipes" style={{ textDecoration: "none", color: "inherit" }}>
@@ -14,7 +17,15 @@ function HeaderWithBackAndProfile() {
         </div>
       </Link>
       <div className={styles.profile}>
-        <FaRegUserCircle />
+        {user.photoURL ? (
+          <img
+            src={user.photoURL}
+            alt="profile"
+            className={styles.profileImage}
+          />
+        ) : (
+          <FaRegUserCircle />
+        )}
       </div>
     </div>
   );

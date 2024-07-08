@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./SwitchCategoryHomePage.module.css";
 import { useSelector } from "react-redux";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../firebase/config";
+import useGetUserDisease from "../hooks/useGetUserDisease";
 
 function SwitchCategoryHomePage() {
+  const { disease } = useGetUserDisease();
   return (
     <div className={styles.switchCategoryContainer}>
       <select
@@ -14,8 +18,11 @@ function SwitchCategoryHomePage() {
         <option value="DEFAULT" disabled hidden>
           Do you want to switch category?
         </option>
-        <option value="1">PCOD-PCOS</option>
-        <option value="2">THYROID</option>
+        {disease.map((d, index) => (
+          <option key={index} value={d}>
+            {d}
+          </option>
+        ))}
       </select>
     </div>
   );

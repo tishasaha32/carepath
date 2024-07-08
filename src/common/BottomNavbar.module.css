@@ -11,7 +11,7 @@
     background-color: white;
 }
 
-.homeIconContainer, .recipesIconContainer, .exerciseIconContainer, .consultancyIconContainer, .activeIconContainer{
+.homeIconContainer, .recipesIconContainer, .exerciseIconContainer, .resourceIconContainer, .activeIconContainer{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,6 +24,6 @@
     /* color: red; */
     font-weight: bolder;
 }
-.homeIcon, .recipesIcon, .exerciseIcon, .consultancyIcon{
+.homeIcon, .recipesIcon, .exerciseIcon, .resourceIcon{
     font-size: 1.5rem;
 }

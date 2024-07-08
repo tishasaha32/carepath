@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "./DiseaseCategories.module.css";
 import { IoIosCheckmarkCircle } from "react-icons/io";
 import { Link } from "react-router-dom";
+import useHandleDiseaseSelection from "../hooks/useHandleDiseaseSelection";
 
 function DiseaseCategories() {
   const diseaseCategoriesArray = [
@@ -57,11 +58,15 @@ function DiseaseCategories() {
       )
     );
   };
+  const { handleDiseaseSelection } = useHandleDiseaseSelection({
+    selectedDisease,
+  });
 
   useEffect(() => {
-    const selectedCategories = diseaseCategories.filter(
-      (category) => category.selected
-    );
+    const selectedCategories = diseaseCategories
+      .filter((category) => category.selected)
+      .map((category) => category.name);
+
     console.log(selectedCategories);
     setSelectedDisease(selectedCategories);
   }, [diseaseCategories]);
@@ -96,7 +101,12 @@ function DiseaseCategories() {
         </div>
       </div>
       <Link to="/">
-        <button className={styles.getStartedButton}>Get Started</button>
+        <button
+          className={styles.getStartedButton}
+          onClick={handleDiseaseSelection}
+        >
+          Get Started
+        </button>
       </Link>
     </div>
   );

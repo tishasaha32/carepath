@@ -8,7 +8,7 @@ import Home from "./pages/Home.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
 import Recipe from "./pages/Recipe.jsx";
 import Exercise from "./pages/Exercise.jsx";
-import Consultancy from "./pages/Consultancy.jsx";
+import Resources from "./pages/Resources.jsx";
 import CategoryWiseRecipes from "./pages/CategoryWiseRecipes.jsx";
 import AddRecipe from "./pages/AddRecipe.jsx";
 import FullRecipeBody from "./pages/FullRecipeBody.jsx";
@@ -54,7 +54,7 @@ const App = () => {
   };
 
   if (!authChecked) {
-    return <div>Loading...</div>; // Or any loading indicator
+    return <div>Loading...</div>;
   }
 
   return (
@@ -120,10 +120,10 @@ const App = () => {
           }
         />
         <Route
-          path="/consultancy"
+          path="/resources"
           element={
             <ProtectedRoute>
-              <Consultancy />
+              <Resources />
             </ProtectedRoute>
           }
         />
