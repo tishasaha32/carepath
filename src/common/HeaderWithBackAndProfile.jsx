@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 function HeaderWithBackAndProfile() {
   const { user } = useSelector((state) => state.auth);
-  console.log(user);
   return (
     <div className={styles.headerWithBackAndProfileContainer}>
       <Link to="/recipes" style={{ textDecoration: "none", color: "inherit" }}>
@@ -16,17 +15,19 @@ function HeaderWithBackAndProfile() {
           <p className={styles.recipesText}>Back</p>
         </div>
       </Link>
-      <div className={styles.profile}>
-        {user.photoURL ? (
-          <img
-            src={user.photoURL}
-            alt="profile"
-            className={styles.profileImage}
-          />
-        ) : (
-          <FaRegUserCircle />
-        )}
-      </div>
+      <Link to="/profile" style={{ textDecoration: "none", color: "inherit" }}>
+        <div className={styles.profile}>
+          {user.photoURL ? (
+            <img
+              src={user.photoURL}
+              alt="profile"
+              className={styles.profileImage}
+            />
+          ) : (
+            <FaRegUserCircle />
+          )}
+        </div>
+      </Link>
     </div>
   );
 }

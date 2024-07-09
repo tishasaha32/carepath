@@ -3,6 +3,7 @@ import HomePageHeader from "../component/HomePageHeader";
 import SwitchCategoryHomePage from "../component/SwitchCategoryHomePage";
 import BottomNavbar from "../common/BottomNavbar";
 import { useSelector } from "react-redux";
+import HomePageDates from "../component/HomePageDates";
 
 function Home() {
   const user = useSelector((state) => state.auth.user);
@@ -10,6 +11,7 @@ function Home() {
     <div>
       <HomePageHeader />
       <SwitchCategoryHomePage />
+      <HomePageDates />
       <BottomNavbar />
     </div>
   );

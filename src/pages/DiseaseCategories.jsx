@@ -58,18 +58,16 @@ function DiseaseCategories() {
       )
     );
   };
-  const { handleDiseaseSelection } = useHandleDiseaseSelection({
-    selectedDisease,
-  });
 
   useEffect(() => {
     const selectedCategories = diseaseCategories
       .filter((category) => category.selected)
       .map((category) => category.name);
 
-    console.log(selectedCategories);
     setSelectedDisease(selectedCategories);
   }, [diseaseCategories]);
+
+  const handleDiseaseSelection = useHandleDiseaseSelection(selectedDisease);
 
   return (
     <div className={styles.diseaseCategoriesContainer}>
