@@ -1,8 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./SwitchCategoryHomePage.module.css";
-import { useSelector } from "react-redux";
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase/config";
 import useGetUserDisease from "../hooks/useGetUserDisease";
 
 function SwitchCategoryHomePage() {
