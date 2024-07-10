@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
@@ -19,6 +19,8 @@ import { clearUser, setUser, setLoading } from "./redux/reducer/authSlice.js";
 import { auth } from "./firebase/config.js";
 import { onAuthStateChanged } from "firebase/auth";
 import ProtectedRoute from "./component/ProtectedRoute.jsx";
+import MedicineReminder from "./pages/medicine-reminder/index";
+import AddMedicineReminder from "./pages/add-medicine-reminder/index.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -158,6 +160,11 @@ const App = () => {
               <Profile />
             </ProtectedRoute>
           }
+        />
+        <Route path="/medicine-reminder" element={<MedicineReminder />} />
+        <Route
+          path="/add-medicine-reminder"
+          element={<AddMedicineReminder />}
         />
       </Routes>
     </div>
