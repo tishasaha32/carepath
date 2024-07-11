@@ -8,7 +8,6 @@ import Home from "./pages/Home.jsx";
 import ResetPassword from "./pages/ResetPassword.jsx";
 import Recipe from "./pages/Recipe.jsx";
 import Exercise from "./pages/Exercise.jsx";
-import Resources from "./pages/Resources.jsx";
 import CategoryWiseRecipes from "./pages/CategoryWiseRecipes.jsx";
 import AddRecipe from "./pages/AddRecipe.jsx";
 import FullRecipeBody from "./pages/FullRecipeBody.jsx";
@@ -19,6 +18,7 @@ import { clearUser, setUser, setLoading } from "./redux/reducer/authSlice.js";
 import { auth } from "./firebase/config.js";
 import { onAuthStateChanged } from "firebase/auth";
 import ProtectedRoute from "./component/ProtectedRoute.jsx";
+import Reels from "./pages/Reels.jsx";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -120,10 +120,10 @@ const App = () => {
           }
         />
         <Route
-          path="/resources"
+          path="/reels"
           element={
             <ProtectedRoute>
-              <Resources />
+              <Reels />
             </ProtectedRoute>
           }
         />

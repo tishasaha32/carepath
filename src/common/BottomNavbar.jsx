@@ -3,7 +3,7 @@ import styles from "./BottomNavbar.module.css";
 import { AiOutlineHome } from "react-icons/ai";
 import { GiCampCookingPot } from "react-icons/gi";
 import { TbTreadmill } from "react-icons/tb";
-import { GrResources } from "react-icons/gr";
+import { BsCameraReels } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 
 function BottomNavbar() {
@@ -49,15 +49,15 @@ function BottomNavbar() {
         <p>Exercise</p>
       </NavLink>
       <NavLink
-        to="/resources"
+        to="/reels"
         style={{ textDecoration: "none" }}
         className={({ isActive }) =>
-          isActive ? styles.activeIconContainer : styles.resourceIconContainer
+          isActive ? styles.activeIconContainer : styles.reelsIconContainer
         }
         onClick={() => handleTabClick("consultancy")}
       >
-        <GrResources className={styles.resourceIcon} />
-        <p>Resources</p>
+        <BsCameraReels className={styles.reelsIcon} />
+        <p>Reels</p>
       </NavLink>
     </div>
   );

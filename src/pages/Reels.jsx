@@ -1,12 +1,14 @@
 import React from "react";
+import ReelsComponent from "../component/ReelsComponent";
 import BottomNavbar from "../common/BottomNavbar";
 
-function Consultancy() {
+function Reels() {
   return (
     <div>
+      <ReelsComponent />
       <BottomNavbar />
     </div>
   );
 }
 
-export default Consultancy;
+export default Reels;
